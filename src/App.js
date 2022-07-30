@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import About from './Components/About'
 import Footer from './Components/Footer'
 import Anecdote from './Components/Anecdote'
+import Notification from './Components/Notification'
 
 const Menu = () => {
   const padding = {
@@ -62,6 +63,12 @@ const App = () => {
   const addNew = (anecdote) => {
     anecdote.id = Math.round(Math.random() * 10000)
     setAnecdotes(anecdotes.concat(anecdote))
+
+    setNotification(`${anecdote.content} created`)
+
+    setTimeout(() => {
+      setNotification('')
+    }, 5000)
   }
 
   const anecdoteById = (id) =>
@@ -84,7 +91,7 @@ const App = () => {
       <h1>Software anecdotes</h1>
       <Menu />
        </div>
-
+<Notification message={notification}/>
     <Routes>
 
       <Route path='/' element ={<AnecdoteList anecdotes={anecdotes}/>}/>
