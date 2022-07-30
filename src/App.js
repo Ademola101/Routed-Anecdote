@@ -3,6 +3,7 @@ import CreateNew from './Components/CreateNew'
 import { BrowserRouter as Router, Route, Routes, Link} from 'react-router-dom'
 import About from './Components/About'
 import Footer from './Components/Footer'
+import Anecdote from './Components/Anecdote'
 
 const Menu = () => {
   const padding = {
@@ -28,7 +29,11 @@ const AnecdoteList = ({ anecdotes }) => (
   <div>
     <h2>Anecdotes</h2>
     <ul>
-      {anecdotes.map(anecdote => <li key={anecdote.id} >{anecdote.content}</li>)}
+      {anecdotes.map(anecdote => <li key={anecdote.id} >
+        <Link to={`/anecdotes/${anecdote.id}`}>
+        {anecdote.content}
+        </Link>
+        </li>)}
     </ul>
   </div>
 )
@@ -83,10 +88,11 @@ const App = () => {
     <Routes>
 
       <Route path='/anecdotes' element ={<AnecdoteList anecdotes={anecdotes}/>}/>
+      <Route path='/anecdotes/:id' element ={<Anecdote anecdotes={anecdotes}/>}/>
       <Route path='/about' element ={<About/>}/>
       <Route path='/create-new' element ={<CreateNew/>}/>
     </Routes>
-
+<Footer/>
     </Router>
     
   )
