@@ -1,5 +1,9 @@
 import { useState } from 'react'
-const CreateNew = (props) => {
+import {useNavigate} from 'react-router-dom'
+
+
+const CreateNew = ({addNew}) => {
+  const navigate = useNavigate()
   const [content, setContent] = useState('')
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
@@ -7,12 +11,14 @@ const CreateNew = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.addNew({
+    addNew({
       content,
       author,
       info,
       votes: 0
     })
+
+    navigate('/')
   }
 
   return (
