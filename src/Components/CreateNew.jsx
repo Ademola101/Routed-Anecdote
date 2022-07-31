@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
+import {useField} from '../hooks/index'
 
 
 const CreateNew = ({addNew}) => {
+  const content = useField('text')
   const navigate = useNavigate()
-  const [content, setContent] = useState('')
+  
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
-
+  const contentValue = content.value
 
   const handleSubmit = (e) => {
     e.preventDefault()
     addNew({
-      content,
+      contentValue,
       author,
       info,
       votes: 0
@@ -27,7 +29,7 @@ const CreateNew = ({addNew}) => {
       <form onSubmit={handleSubmit}>
         <div>
            <label htmlFor="content"> content
-           <input name='content' value={content} onChange={(e) => setContent(e.target.value)} />
+           <input type={content.type} name='content' value={content.value} onChange={content.onChange}/>
            </label>
           
         </div>
