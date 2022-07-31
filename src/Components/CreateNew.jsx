@@ -9,12 +9,12 @@ const CreateNew = ({addNew}) => {
   
   const [author, setAuthor] = useState('')
   const [info, setInfo] = useState('')
-  const contentValue = content.value
+
 
   const handleSubmit = (e) => {
     e.preventDefault()
     addNew({
-      contentValue,
+      content: content.value,
       author,
       info,
       votes: 0
