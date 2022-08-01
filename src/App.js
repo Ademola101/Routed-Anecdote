@@ -5,26 +5,8 @@ import About from './Components/About'
 import Footer from './Components/Footer'
 import Anecdote from './Components/Anecdote'
 import Notification from './Components/Notification'
+import Menu from './Components/Menu'
 
-const Menu = () => {
-  const padding = {
-    paddingRight: 5
-  }
-  return (
-    // <div>
-    //   <a href='#' style={padding}>anecdotes</a>
-    //   <a href='#' style={padding}>create new</a>
-    //   <a href='#' style={padding}>about</a>
-    // </div>
-
-    <div>
-
-      <Link style={padding} to = '/' > Anecdote </Link>
-      <Link style={padding} to = '/about' > About </Link>
-      <Link style={padding} to = '/create-new' > Create new </Link>
-    </div>
-  )
-}
 
 const AnecdoteList = ({ anecdotes }) => (
   <div>
@@ -62,7 +44,7 @@ const App = () => {
 
   const addNew = (anecdote) => {
     anecdote.id = Math.round(Math.random() * 10000)
-    console.log(anecdote);
+    
     setAnecdotes(anecdotes.concat(anecdote))
 
     setNotification(`${anecdote.content} created`)
