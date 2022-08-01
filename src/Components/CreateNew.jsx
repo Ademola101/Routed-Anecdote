@@ -52,7 +52,7 @@ const CreateNew = ({addNew}) => {
           url for more info
           <input {...info} />
         </div>
-        <input type="reset" value= 'Reset' onClick={handleReset} />
+        <input required type="reset" value= 'Reset' onClick={handleReset} />
         <input type="submit" value= 'Create' />
       </form>
 
