@@ -1,13 +1,13 @@
-import { useState } from 'react'
 import {useNavigate} from 'react-router-dom'
 import {useField} from '../hooks/index'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 
 const CreateNew = ({addNew}) => {
   const {reset:contentRest, ...content} = useField('text')
   const {reset: authorReset, ...author}  = useField('text')
   const {reset: infoReset, ...info} = useField('text')
-  const {reset: voteReset, ...votes} = useField('text')
   const navigate = useNavigate()
   
 
@@ -19,7 +19,7 @@ const CreateNew = ({addNew}) => {
       content: content.value,
       author: author.value,
       info : info.value,
-      votes: votes.value
+      
     })
 
     navigate('/')
@@ -30,31 +30,34 @@ const CreateNew = ({addNew}) => {
     contentRest()
     authorReset()
     infoReset()
-    voteReset()
+    
     
   }
 
   return (
     <div>
       <h2>create a new anecdote</h2>
-      <form onSubmit={handleSubmit} >
+      <Form onSubmit={handleSubmit} >
+        <Form.Group>
         <div>
-           <label htmlFor="content"> content
-           <input {...content}/>
-           </label>
+           <Form.Label htmlFor="content"> content : </Form.Label>
+           <Form.Control {...content}/>
+           
           
         </div>
         <div>
-          author
-          <input {...author} />
+           <Form.Label> author</Form.Label>
+          <Form.Control {...author} />
         </div>
         <div>
-          url for more info
-          <input {...info} />
+        <Form.Label>url for more info</Form.Label>  
+          <Form.Control {...info} />
         </div>
-        <input required type="reset" value= 'Reset' onClick={handleReset} />
-        <input type="submit" value= 'Create' />
-      </form>
+        <Button variant = 'danger' type="reset" onClick={handleReset} > Reset</Button>
+        <Button variant = 'primary' type="submit"  > Create </Button>
+        
+        </Form.Group>
+      </Form>
 
       
     </div>

@@ -6,19 +6,22 @@ import Footer from './Components/Footer'
 import Anecdote from './Components/Anecdote'
 import Notification from './Components/Notification'
 import Menu from './Components/Menu'
+import { Table } from 'react-bootstrap'
 
 
 const AnecdoteList = ({ anecdotes }) => (
-  <div>
-    <h2>Anecdotes</h2>
-    <ul>
-      {anecdotes.map(anecdote => <li key={anecdote.id} >
+  <Table striped>
+    <th>Anecdotes</th>
+    <tbody>
+      {anecdotes.map(anecdote => <tr key={anecdote.id} >
+        <td>
         <Link to={`/anecdotes/${anecdote.id}`}>
         {anecdote.content}
         </Link>
-        </li>)}
-    </ul>
-  </div>
+        </td>
+        </tr>)}
+    </tbody>
+  </Table>
 )
 
 
@@ -72,7 +75,7 @@ const App = () => {
 
   const anecdote = match ? anecdotes.find(anecdote => anecdote.id === Number(match.params.id)) : null
   return (
-    <>
+    <div className='container'>
 <div>
       <h1>Software anecdotes</h1>
       <Menu />
@@ -87,7 +90,7 @@ const App = () => {
     </Routes>
 <Footer/>
     
-</>
+</div>
   )
 }
 
